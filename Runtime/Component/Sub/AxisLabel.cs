@@ -161,8 +161,8 @@ namespace XCharts
                     return ChartCached.IntToStr((int)value);
                 else
                     return ChartCached.FloatToStr(value, 1);
-            }
-            else
+            } 
+            else if (m_Formatter.Contains("{value"))
             {
                 var content = m_Formatter;
                 if (content.Contains("{value:f2}"))
@@ -181,6 +181,9 @@ namespace XCharts
                 content = content.Replace("\\n", "\n");
                 content = content.Replace("<br/>", "\n");
                 return content;
+            } 
+            else {
+                return value.ToString(m_Formatter);
             }
         }
     }
